@@ -1,0 +1,40 @@
+.container {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-top: 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.leaderboardTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.leaderboardTable th,
+.leaderboardTable td {
+  padding: 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.leaderboardTable th {
+  background-color: #e9ecef;
+  font-weight: bold;
+}
+
+.leaderboardTable tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.leaderboardTable tr:hover {
+  background-color: #e2e6ea;
+}
+
+.emptyMessage {
+  text-align: center;
+  color: #6c757d;
+  font-style: italic;
+  margin-top: 1rem;
+} 
