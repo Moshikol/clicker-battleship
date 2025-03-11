@@ -96,6 +96,7 @@ const initialState: GameState = {
     gamePhase: 'setup',
     winner: null,
   },
+  counterColor: '#FFFFFF', // Default color is white
 };
 
 const gameSlice = createSlice({
@@ -104,16 +105,13 @@ const gameSlice = createSlice({
   reducers: {
     // Phase 1: Clicker Mechanics
     click: (state) => {
+      // ONLY increment total clicks counter by 1, nothing else
+      state.stats.totalClicks = state.stats.totalClicks + 1;
+    },
+    earnCoins: (state) => {
       const coinsEarned = state.upgrades.clickMultiplier;
-      state.resources.clicks += 1;
       state.resources.coins += coinsEarned;
-      state.stats.totalClicks += 1;
       state.stats.totalCoinsEarned += coinsEarned;
-      
-      // Chance to earn bombs based on clicks (1% chance per click)
-      if (Math.random() < 0.01) {
-        state.resources.bombs += 1;
-      }
     },
     purchaseClickMultiplier: (state) => {
       const cost = state.upgrades.clickMultiplier * 10;
@@ -603,11 +601,19 @@ const gameSlice = createSlice({
         ship.health = ship.size;
       }
     },
+
+    setCounterColor: (state, action: PayloadAction<string>) => {
+      // Ensure we're setting a valid color
+      const newColor = action.payload;
+      console.log('Setting counter color to:', newColor);
+      state.counterColor = newColor;
+    },
   },
 });
 
 export const { 
   click, 
+  earnCoins, 
   purchaseClickMultiplier, 
   purchaseAutoClicker, 
   autoClickTick,
@@ -623,6 +629,7 @@ export const {
   upgradeShieldStrength,
   deployShield,
   launchResetBomb,
-  rebuildShip
+  rebuildShip,
+  setCounterColor
 } = gameSlice.actions;
 export default gameSlice.reducer; 

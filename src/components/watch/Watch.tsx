@@ -1,13 +1,13 @@
 import React, { useState, useContext } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../store/store';
-import { click } from '../../store/gameSlice';
+import { click, earnCoins } from '../../store/gameSlice';
 import { NavigationContext } from '../../App';
 import styles from './Watch.module.css';
 
 export const Watch: React.FC = () => {
   const dispatch = useDispatch();
-  const { resources, stats } = useSelector((state: RootState) => state.game);
+  const { resources, stats, counterColor } = useSelector((state: RootState) => state.game);
   const { navigateTo } = useContext(NavigationContext);
   const [isWatchActive, setIsWatchActive] = useState(false);
   
@@ -22,7 +22,8 @@ export const Watch: React.FC = () => {
   
   // Format the click counter display
   const formatClickDisplay = () => {
-    return stats.totalClicks.toString().padStart(8, '0');
+    console.log('Current total clicks:', stats.totalClicks);
+    return stats.totalClicks.toString().padStart(5, '0');
   };
   
   return (
@@ -33,7 +34,13 @@ export const Watch: React.FC = () => {
             <div className={styles.watchBrand}>CLICKER BATTLESHIP</div>
             
             <div className={styles.counterSection}>
-              <div className={`${styles.watchDisplay} ${isWatchActive ? styles.active : ''}`}>
+              <div 
+                className={`${styles.watchDisplay} ${isWatchActive ? styles.active : ''}`}
+                style={{ 
+                  color: counterColor,
+                  textShadow: `0 0 10px ${counterColor}`
+                }}
+              >
                 {formatClickDisplay()}
               </div>
               
@@ -48,11 +55,17 @@ export const Watch: React.FC = () => {
             <div className={styles.watchStats}>
               <div className={styles.statItem}>
                 <span className={styles.statLabel}>COINS</span>
-                <span className={styles.statValue}>{resources.coins}</span>
+                <span className={styles.statValue} style={{ 
+                  color: counterColor,
+                  textShadow: `0 0 5px ${counterColor}`
+                }}>{resources.coins}</span>
               </div>
               <div className={styles.statItem}>
                 <span className={styles.statLabel}>BOMBS</span>
-                <span className={styles.statValue}>{resources.bombs}</span>
+                <span className={styles.statValue} style={{ 
+                  color: counterColor,
+                  textShadow: `0 0 5px ${counterColor}`
+                }}>{resources.bombs}</span>
               </div>
             </div>
           </div>

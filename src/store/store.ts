@@ -1,8 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import gameReducer from './gameSlice';
-import { loadGameState, saveGameState } from '../utils/storage';
+import { loadGameState, saveGameState, clearGameState } from '../utils/storage';
 
-// Load saved state if available
+// Clear any existing saved state to start fresh
+clearGameState();
+
+// Load saved state if available (will be null now)
 const preloadedState = loadGameState();
 
 export const store = configureStore({
