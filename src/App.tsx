@@ -6,6 +6,7 @@ import { Game } from './components/game/Game';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from './store/store';
 import { autoClickTick } from './store/gameSlice';
+import ColorPicker from './components/ui/ColorPicker';
 import './styles/global.css';
 
 // Component that handles auto-clicking
@@ -44,6 +45,7 @@ const AppContent: React.FC = () => {
   return (
     <NavigationContext.Provider value={{ navigateTo, currentPage }}>
       <AutoClickHandler />
+      <ColorPicker />
       {currentPage === 'watch' && <Watch />}
       {currentPage === 'game' && <Game />}
     </NavigationContext.Provider>

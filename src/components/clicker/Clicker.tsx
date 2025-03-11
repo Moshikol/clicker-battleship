@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../store/store';
 import { 
@@ -8,16 +8,26 @@ import {
   purchaseBomb,
   purchaseShield,
   upgradeBombEfficiency,
-  upgradeShieldStrength
+  upgradeShieldStrength,
+  earnCoins
 } from '../../store/gameSlice';
 import styles from './Clicker.module.css';
 
 export const Clicker: React.FC = () => {
   const dispatch = useDispatch();
-  const { resources, upgrades, stats } = useSelector((state: RootState) => state.game);
+  const { resources, upgrades, stats, counterColor } = useSelector((state: RootState) => state.game);
+  
+  // Debug counterColor
+  useEffect(() => {
+    console.log('Clicker component - counterColor:', counterColor);
+  }, [counterColor]);
   
   const handleClick = () => {
     dispatch(click());
+  };
+  
+  const handleEarnCoins = () => {
+    dispatch(earnCoins());
   };
   
   const handlePurchaseClickMultiplier = () => {
@@ -67,42 +77,51 @@ export const Clicker: React.FC = () => {
         <div className={styles.resourceGrid}>
           <div className={styles.resourceItem}>
             <span className={styles.resourceLabel}>Coins:</span>
-            <span className={styles.resourceValue}>{resources.coins}</span>
+            <span className={styles.resourceValue} style={{ color: counterColor, fontWeight: 'bold' }}>{resources.coins}</span>
+          </div>
+          <div className={styles.resourceItem}>
+            <span className={styles.resourceLabel}>Clicks:</span>
+            <span className={styles.resourceValue} style={{ color: counterColor, fontWeight: 'bold' }}>{resources.clicks}</span>
           </div>
           <div className={styles.resourceItem}>
             <span className={styles.resourceLabel}>Bombs:</span>
-            <span className={styles.resourceValue}>{resources.bombs}</span>
+            <span className={styles.resourceValue} style={{ color: counterColor, fontWeight: 'bold' }}>{resources.bombs}</span>
           </div>
           <div className={styles.resourceItem}>
             <span className={styles.resourceLabel}>Shields:</span>
-            <span className={styles.resourceValue}>{resources.shields}</span>
+            <span className={styles.resourceValue} style={{ color: counterColor, fontWeight: 'bold' }}>{resources.shields}</span>
           </div>
           <div className={styles.resourceItem}>
             <span className={styles.resourceLabel}>Click Multiplier:</span>
-            <span className={styles.resourceValue}>{upgrades.clickMultiplier}x</span>
+            <span className={styles.resourceValue} style={{ color: counterColor, fontWeight: 'bold' }}>{upgrades.clickMultiplier}x</span>
           </div>
           <div className={styles.resourceItem}>
             <span className={styles.resourceLabel}>Auto-Clickers:</span>
-            <span className={styles.resourceValue}>{upgrades.autoClickersCount}</span>
+            <span className={styles.resourceValue} style={{ color: counterColor, fontWeight: 'bold' }}>{upgrades.autoClickersCount}</span>
           </div>
           <div className={styles.resourceItem}>
             <span className={styles.resourceLabel}>Bomb Efficiency:</span>
-            <span className={styles.resourceValue}>{upgrades.bombEfficiency}</span>
+            <span className={styles.resourceValue} style={{ color: counterColor, fontWeight: 'bold' }}>{upgrades.bombEfficiency}</span>
           </div>
           <div className={styles.resourceItem}>
             <span className={styles.resourceLabel}>Shield Strength:</span>
-            <span className={styles.resourceValue}>{upgrades.shieldStrength}</span>
+            <span className={styles.resourceValue} style={{ color: counterColor, fontWeight: 'bold' }}>{upgrades.shieldStrength}</span>
           </div>
         </div>
       </div>
 
       <div className={styles.clickerSection}>
-        <button className={styles.clickButton} onClick={handleClick}>
-          Click Me!
-        </button>
+        <div>
+          <button className={styles.clickButton} onClick={handleClick}>
+            Click Me!
+          </button>
+          <button className={styles.clickButton} onClick={handleEarnCoins}>
+            Earn Coins!
+          </button>
+        </div>
         <div className={styles.clickStats}>
-          <p>Total Clicks: {stats.totalClicks}</p>
-          <p>Total Coins Earned: {stats.totalCoinsEarned}</p>
+          <p>Total Clicks: <span style={{ color: counterColor, fontWeight: 'bold' }}>{stats.totalClicks}</span></p>
+          <p>Total Coins Earned: <span style={{ color: counterColor, fontWeight: 'bold' }}>{stats.totalCoinsEarned}</span></p>
         </div>
       </div>
 

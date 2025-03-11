@@ -45,18 +45,37 @@
 .clickerSection {
   text-align: center;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.clickerSection > div:first-of-type {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
 }
 
 .clickButton {
-  padding: 2rem 4rem;
+  padding: 1.5rem 2rem;
   font-size: 1.5rem;
   background: #4CAF50;
   color: white;
   border: none;
-  border-radius: 50%;
+  border-radius: 12px;
   cursor: pointer;
   transition: transform 0.1s;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 0 0.5rem;
+}
+
+.clickButton:nth-child(2) {
+  background: #2196F3;
+}
+
+.clickButton:nth-child(2):hover {
+  background: #1976D2;
 }
 
 .clickButton:active {

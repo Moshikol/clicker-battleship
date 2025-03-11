@@ -40,9 +40,24 @@
   max-width: 1200px;
   margin: 0 auto;
   width: 100%;
+  display: flex;
+  gap: 2rem;
+}
+
+.leftColumn, .rightColumn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
 /* Media queries for responsiveness */
+@media (max-width: 992px) {
+  .content {
+    flex-direction: column;
+  }
+}
+
 @media (max-width: 768px) {
   .header {
     padding: 1rem;
@@ -52,5 +67,10 @@
   
   .content {
     padding: 1rem;
+    gap: 1rem;
+  }
+  
+  .leftColumn, .rightColumn {
+    gap: 1rem;
   }
 } 

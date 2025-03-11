@@ -21,9 +21,13 @@ export const Game: React.FC = () => {
       </div>
       
       <div className={styles.content}>
-        <Clicker />
-        <GameBoard />
-        <Leaderboard />
+        <div className={styles.leftColumn}>
+          <Clicker />
+        </div>
+        <div className={styles.rightColumn}>
+          <GameBoard />
+          <Leaderboard />
+        </div>
       </div>
     </div>
   );

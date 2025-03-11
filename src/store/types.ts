@@ -55,6 +55,7 @@ export interface GameState {
     gamePhase: 'setup' | 'battle' | 'ended';
     winner: string | null;
   };
+  counterColor: string;
 }
 
 export interface RootState {
