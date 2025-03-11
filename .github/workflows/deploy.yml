@@ -32,6 +32,11 @@ jobs:
         run: npm run build
         env:
           NODE_ENV: production
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: github-pages
+          path: ./dist
       - name: Upload artifact to GitHub Pages
         uses: actions/upload-pages-artifact@v2
         with:
