@@ -2,6 +2,10 @@
 
 A hybrid game combining clicker mechanics with strategic naval combat. Players accumulate resources through clicking, defend their territory, and launch strategic attacks against opponents.
 
+## Deployment
+
+The game is automatically deployed to GitHub Pages using GitHub Actions. You can access the live version at: https://moshikol.github.io/clicker-battleship/
+
 ## Features
 
 ### Phase 1: Core Clicker Mechanics
@@ -34,6 +38,7 @@ A hybrid game combining clicker mechanics with strategic naval combat. Players a
 - **Game Engine**: Phaser.js integration
 - **State Management**: Redux Toolkit
 - **Persistence**: LocalStorage
+- **CI/CD**: GitHub Actions for continuous deployment to GitHub Pages
 
 ## Getting Started
 
