@@ -280,22 +280,6 @@
 /* Media queries for responsiveness */
 @media (max-width: 768px) {
   .floating-icon {
-    width: 44px;
-    height: 44px;
-    right: 15px;
-  }
-  
-  .leaderboard-icon {
-    top: 15px;
-  }
-  
-  .login-icon, .user-icon {
-    top: 70px;
-  }
-}
-
-@media (max-width: 480px) {
-  .floating-icon {
     width: 40px;
     height: 40px;
     right: 10px;
@@ -308,10 +292,26 @@
   .login-icon, .user-icon {
     top: 60px;
   }
+}
+
+@media (max-width: 480px) {
+  .floating-icon {
+    width: 36px;
+    height: 36px;
+    right: 5px;
+  }
+  
+  .leaderboard-icon {
+    top: 10px;
+  }
+  
+  .login-icon, .user-icon {
+    top: 56px;
+  }
   
   .mini-avatar {
-    width: 28px;
-    height: 28px;
-    font-size: 16px;
+    width: 24px;
+    height: 24px;
+    font-size: 14px;
   }
 } 

@@ -1,8 +1,8 @@
 .colorPicker {
   position: fixed;
-  left: 20px;
-  top: 50%;
-  transform: translateY(-50%);
+  right: 20px;
+  top: 140px;
+  transform: translateY(0);
   background-color: #2a2a2a;
   border-radius: 10px;
   padding: 15px;
@@ -13,7 +13,7 @@
 }
 
 .colorPicker:hover {
-  transform: translateY(-50%) translateX(5px);
+  transform: translateX(-5px);
 }
 
 .header {
@@ -70,7 +70,7 @@
 }
 
 .collapsed:active {
-  transform: translateY(-50%) scale(0.97);
+  transform: scale(0.97);
 }
 
 .collapsedIcon {
@@ -138,7 +138,8 @@
 
 @media (max-width: 768px) {
   .colorPicker {
-    left: 10px;
+    right: 10px;
+    top: 130px;
     padding: 10px;
     width: 120px;
   }
@@ -172,7 +173,8 @@
 
 @media (max-width: 480px) {
   .colorPicker {
-    left: 5px;
+    right: 5px;
+    top: 120px;
     padding: 8px;
     width: 100px;
   }
