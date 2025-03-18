@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback, Suspense } from 'react';
+import React, { useEffect, useState, useCallback, Suspense, ErrorBoundary } from 'react';
 import { Provider } from 'react-redux';
 import { store } from './store/store';
 import { Watch } from './components/watch/Watch';
@@ -14,11 +14,7 @@ import './styles/global.css';
 
 // Error boundary component to catch rendering errors
 class AppErrorBoundary extends React.Component<{ children: React.ReactNode }> {
-  state: { hasError: boolean; error: Error | null; errorInfo: any } = { 
-    hasError: false, 
-    error: null, 
-    errorInfo: null 
-  };
+  state = { hasError: false, error: null, errorInfo: null };
   
   componentDidCatch(error: any, errorInfo: any) {
     this.setState({
@@ -76,7 +72,7 @@ class AppErrorBoundary extends React.Component<{ children: React.ReactNode }> {
             borderRadius: 4,
             fontSize: '12px'
           }}>
-            {this.state.error ? this.state.error.toString() : 'Unknown error'}
+            {this.state.error?.toString()}
           </pre>
         </div>
       );
