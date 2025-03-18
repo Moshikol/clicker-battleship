@@ -2,7 +2,7 @@
 .colorPickerContainer {
   position: fixed;
   right: 20px;
-  top: 140px;
+  top: 140px; /* Positioned 60px below the user icon (which is at 80px) */
   z-index: 100;
 }
 
@@ -138,7 +138,7 @@
 @media (max-width: 768px) {
   .colorPickerContainer {
     right: 10px;
-    top: 130px;
+    top: 110px; /* Maintain 50px spacing on medium screens */
   }
   
   .colorButton {
@@ -180,7 +180,7 @@
 @media (max-width: 480px) {
   .colorPickerContainer {
     right: 5px;
-    top: 120px;
+    top: 100px; /* Maintain proportional spacing on small screens */
   }
   
   .colorButton {
