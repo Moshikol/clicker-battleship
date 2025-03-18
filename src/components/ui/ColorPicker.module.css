@@ -25,6 +25,7 @@
 
 .collapsed .header {
   margin-bottom: 0;
+  justify-content: center;
 }
 
 .title {
@@ -57,7 +58,7 @@
 
 .collapsed {
   width: auto;
-  min-width: 85px;
+  min-width: 50px;
   padding: 10px;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -76,29 +77,30 @@
   display: flex;
   align-items: center;
   gap: 8px;
+  padding: 2px;
 }
 
 .paletteIcon {
-  color: #ffffff;
-  transition: color 0.2s;
+  transition: transform 0.2s;
+  filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.5));
 }
 
 .collapsed:hover .paletteIcon {
-  color: #aaaaaa;
+  transform: scale(1.1);
 }
 
 .currentColorDot {
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  border: 1px solid #ffffff;
-  box-shadow: 0 0 4px rgba(255, 255, 255, 0.5);
+  border: 1px solid;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .collapsed:hover .currentColorDot {
   transform: scale(1.1);
-  box-shadow: 0 0 6px rgba(255, 255, 255, 0.7);
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.7);
 }
 
 .colorGrid {
