@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import { setCounterColor } from '../../store/gameSlice';
@@ -24,11 +24,26 @@ const ColorPicker: React.FC = () => {
   const dispatch = useDispatch();
   const currentColor = useSelector((state: RootState) => state.game.counterColor);
   const [isExpanded, setIsExpanded] = useState(false);
+  const colorPickerRef = useRef<HTMLDivElement>(null);
 
-  // Log the current color for debugging
   useEffect(() => {
-    console.log('ColorPicker - Current color in Redux store:', currentColor);
-  }, [currentColor]);
+    // Add click event listener to detect clicks outside
+    const handleClickOutside = (event: MouseEvent) => {
+      if (colorPickerRef.current && !colorPickerRef.current.contains(event.target as Node)) {
+        setIsExpanded(false);
+      }
+    };
+
+    // Add the event listener when expanded
+    if (isExpanded) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    // Clean up the event listener
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isExpanded]);
 
   const handleColorSelect = (color: string) => {
     console.log('ColorPicker - Setting color to:', color);
@@ -39,46 +54,40 @@ const ColorPicker: React.FC = () => {
     setIsExpanded(!isExpanded);
   };
 
-  // Handle click on the entire collapsed picker
-  const handlePickerClick = (e: React.MouseEvent) => {
-    if (!isExpanded) {
-      toggleExpanded();
-    }
+  // Handle click on the color dot
+  const handleColorDotClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    toggleExpanded();
   };
 
   return (
-    <div 
-      className={`${styles.colorPicker} ${!isExpanded ? styles.collapsed : ''}`}
-      onClick={!isExpanded ? handlePickerClick : undefined}
-    >
-      <div className={styles.header}>
-        {isExpanded ? (
-          <>
+    <div ref={colorPickerRef} className={styles.colorPickerContainer}>
+      {/* Button/Icon */}
+      <div 
+        className={styles.colorButton}
+        onClick={handleColorDotClick}
+        title="Change counter color"
+      >
+        <div 
+          className={styles.currentColorDot} 
+          style={{ backgroundColor: currentColor, borderColor: currentColor }}
+        />
+      </div>
+      
+      {/* Expanded Color Picker Panel */}
+      {isExpanded && (
+        <div className={styles.colorPickerPanel}>
+          <div className={styles.header}>
             <h3 className={styles.title}>Counter Color</h3>
             <button 
               className={styles.toggleButton} 
-              onClick={(e) => {
-                e.stopPropagation();
-                toggleExpanded();
-              }}
-              aria-label="Collapse color picker"
+              onClick={toggleExpanded}
+              aria-label="Close color picker"
             >
-              −
+              ×
             </button>
-          </>
-        ) : (
-          <div className={styles.collapsedIcon}>
-            <div 
-              className={styles.currentColorDot} 
-              style={{ backgroundColor: currentColor, borderColor: currentColor }}
-              title="Current color"
-            />
           </div>
-        )}
-      </div>
-      
-      {isExpanded && (
-        <>
+          
           <div className={styles.colorGrid}>
             {COLORS.map((color, index) => (
               <div
@@ -93,11 +102,12 @@ const ColorPicker: React.FC = () => {
               />
             ))}
           </div>
+          
           <div className={styles.currentColor}>
             <span>Current: </span>
             <span style={{ color: currentColor, fontWeight: 'bold' }}>Sample Text</span>
           </div>
-        </>
+        </div>
       )}
     </div>
   );

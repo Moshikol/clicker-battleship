@@ -1,41 +1,75 @@
-.colorPicker {
+/* Container for both the button and expanded panel */
+.colorPickerContainer {
   position: fixed;
   right: 20px;
   top: 140px;
-  transform: translateY(0);
-  background-color: #2a2a2a;
-  border-radius: 50%;
-  padding: 12px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   z-index: 100;
+}
+
+/* Button styling to match other floating buttons */
+.colorButton {
   width: 48px;
   height: 48px;
+  background-color: #2a2a2a;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
   transition: all 0.3s ease;
 }
 
-.colorPicker:hover {
+.colorButton:hover {
   transform: scale(1.1);
   background-color: #3a3a3a;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
 }
 
-.colorPicker:active {
+.colorButton:active {
   transform: scale(0.95);
 }
 
+/* The color dot inside the button */
+.currentColorDot {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+  transition: all 0.2s ease;
+}
+
+/* Expanded color picker panel that opens to the left */
+.colorPickerPanel {
+  position: absolute;
+  top: 0;
+  right: 60px; /* Position to the left of the button */
+  width: 150px;
+  background-color: #2a2a2a;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Header of the expanded panel */
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 15px;
-}
-
-.collapsed .header {
-  margin-bottom: 0;
-  justify-content: center;
 }
 
 .title {
@@ -66,57 +100,7 @@
   background-color: #505050;
 }
 
-.collapsed {
-  width: auto;
-  min-width: auto;
-  padding: 0;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.collapsed:hover {
-  background-color: #3a3a3a;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-}
-
-.collapsed:active {
-  transform: scale(0.97);
-}
-
-.collapsedIcon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-}
-
-.currentColorDot {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  border: 2px solid;
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.collapsed:hover .currentColorDot {
-  transform: scale(1.1);
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.7);
-}
-
-/* Expanded color picker that appears when clicked */
-.colorPicker:not(.collapsed) {
-  width: 150px;
-  height: auto;
-  border-radius: 10px;
-  padding: 15px;
-  transform: translateY(0);
-}
-
-.colorPicker:not(.collapsed):hover {
-  transform: translateX(-5px);
-}
-
+/* Color grid */
 .colorGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -150,22 +134,30 @@
   font-size: 14px;
 }
 
+/* Responsive styles */
 @media (max-width: 768px) {
-  .colorPicker {
+  .colorPickerContainer {
     right: 10px;
     top: 130px;
-    width: 40px;
-    height: 40px;
-    padding: 8px;
   }
   
-  .colorPicker:not(.collapsed) {
+  .colorButton {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .currentColorDot {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .colorPickerPanel {
+    right: 50px;
     width: 120px;
     padding: 10px;
   }
   
   .colorGrid {
-    grid-template-columns: repeat(3, 1fr);
     grid-gap: 8px;
   }
   
@@ -176,7 +168,6 @@
   
   .title {
     font-size: 14px;
-    margin-bottom: 10px;
   }
   
   .toggleButton {
@@ -184,23 +175,26 @@
     height: 20px;
     font-size: 14px;
   }
-  
-  .currentColorDot {
-    width: 20px;
-    height: 20px;
-  }
 }
 
 @media (max-width: 480px) {
-  .colorPicker {
+  .colorPickerContainer {
     right: 5px;
     top: 120px;
-    width: 36px;
-    height: 36px;
-    padding: 6px;
   }
   
-  .colorPicker:not(.collapsed) {
+  .colorButton {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .currentColorDot {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .colorPickerPanel {
+    right: 45px;
     width: 100px;
     padding: 8px;
   }
@@ -216,17 +210,11 @@
   
   .title {
     font-size: 12px;
-    margin-bottom: 8px;
   }
   
   .toggleButton {
     width: 18px;
     height: 18px;
     font-size: 12px;
-  }
-  
-  .currentColorDot {
-    width: 18px;
-    height: 18px;
   }
 } 
