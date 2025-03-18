@@ -11,11 +11,13 @@ import {
   upgradeShieldStrength,
   earnCoins
 } from '../../store/gameSlice';
+import { useMobile } from '../../context/MobileContext';
 import styles from './Clicker.module.css';
 
 export const Clicker: React.FC = () => {
   const dispatch = useDispatch();
   const { resources, upgrades, stats, counterColor } = useSelector((state: RootState) => state.game);
+  const { isMobile, vibrate } = useMobile();
   
   // Debug counterColor
   useEffect(() => {
@@ -24,6 +26,12 @@ export const Clicker: React.FC = () => {
   
   const handleClick = () => {
     dispatch(click());
+    dispatch(earnCoins());
+    
+    // Provide vibration feedback on mobile devices
+    if (isMobile) {
+      vibrate(50);
+    }
   };
   
   const handleEarnCoins = () => {
@@ -112,12 +120,15 @@ export const Clicker: React.FC = () => {
 
       <div className={styles.clickerSection}>
         <div>
-          <button className={styles.clickButton} onClick={handleClick}>
+          <button 
+            className={styles.clickButton} 
+            onClick={handleClick}
+          >
             Click Me!
           </button>
-          <button className={styles.clickButton} onClick={handleEarnCoins}>
-            Earn Coins!
-          </button>
+          {isMobile && (
+            <p className={styles.mobileHint}>Tip: Use volume down button to click!</p>
+          )}
         </div>
         <div className={styles.clickStats}>
           <p>Total Clicks: <span style={{ color: counterColor, fontWeight: 'bold' }}>{stats.totalClicks}</span></p>

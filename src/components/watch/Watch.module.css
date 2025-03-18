@@ -358,4 +358,17 @@
     width: 15px;
     height: 15px;
   }
+}
+
+/* Mobile hint style */
+.mobileHint {
+  margin-top: 20px;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-align: center;
+  max-width: 300px;
+  color: white;
+  font-size: 0.9rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 } 

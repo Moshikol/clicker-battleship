@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from './store/store';
 import { autoClickTick } from './store/gameSlice';
 import ColorPicker from './components/ui/ColorPicker';
+import { MobileProvider } from './context/MobileContext';
 import './styles/global.css';
 
 // Component that handles auto-clicking
@@ -56,7 +57,9 @@ const AppContent: React.FC = () => {
 const App: React.FC = () => {
   return (
     <Provider store={store}>
-      <AppContent />
+      <MobileProvider>
+        <AppContent />
+      </MobileProvider>
     </Provider>
   );
 };

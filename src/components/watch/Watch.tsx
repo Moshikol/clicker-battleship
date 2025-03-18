@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../store/store';
 import { click, earnCoins } from '../../store/gameSlice';
 import { NavigationContext } from '../../App';
+import { useMobile } from '../../context/MobileContext';
 import styles from './Watch.module.css';
 
 export const Watch: React.FC = () => {
@@ -10,14 +11,21 @@ export const Watch: React.FC = () => {
   const { resources, stats, counterColor } = useSelector((state: RootState) => state.game);
   const { navigateTo } = useContext(NavigationContext);
   const [isWatchActive, setIsWatchActive] = useState(false);
+  const { isMobile, vibrate } = useMobile();
   
   // Handle the click on the watch button
   const handleWatchClick = () => {
     dispatch(click());
+    dispatch(earnCoins());
     
     // Visual feedback - briefly activate the watch
     setIsWatchActive(true);
     setTimeout(() => setIsWatchActive(false), 200);
+    
+    // Provide vibration feedback on mobile devices
+    if (isMobile) {
+      vibrate(50);
+    }
   };
   
   // Format the click counter display
@@ -80,6 +88,12 @@ export const Watch: React.FC = () => {
           ENTER GAME
         </button>
       </div>
+      
+      {isMobile && (
+        <div className={styles.mobileHint}>
+          <p>Tip: Use the volume down button to click!</p>
+        </div>
+      )}
     </div>
   );
 }; 
