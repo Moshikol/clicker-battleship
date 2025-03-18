@@ -108,6 +108,7 @@
   display: flex;
   justify-content: space-between;
   margin-top: 15px;
+  gap: 8px;
 }
 
 .statItem {
@@ -116,9 +117,40 @@
   align-items: center;
   background-color: #1a1a1a;
   border-radius: 5px;
-  padding: 8px 10px;
+  padding: 8px 5px;
   border: 2px solid #111;
-  width: 48%;
+  width: 32%;
+  flex: 1;
+}
+
+.statIcon {
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: statIconPulse 3s infinite alternate;
+}
+
+.statItem:nth-child(1) .statIcon {
+  color: #FFD700;
+}
+
+.statItem:nth-child(2) .statIcon {
+  color: #ff5252;
+}
+
+.statItem:nth-child(3) .statIcon {
+  color: #3498db;
+}
+
+@keyframes statIconPulse {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 3px currentColor);
+  }
 }
 
 .statLabel {
@@ -298,6 +330,28 @@
   
   .statValue {
     font-size: 16px;
+  }
+  
+  .watchStats {
+    flex-wrap: wrap;
+  }
+  
+  .statItem {
+    padding: 5px 3px;
+    min-width: 70px;
+  }
+  
+  .statIcon {
+    margin-bottom: 3px;
+  }
+  
+  .statIcon svg {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .statLabel {
+    font-size: 10px;
   }
 }
 

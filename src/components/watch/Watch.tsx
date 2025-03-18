@@ -62,6 +62,12 @@ export const Watch: React.FC = () => {
             
             <div className={styles.watchStats}>
               <div className={styles.statItem}>
+                <div className={styles.statIcon}>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <circle cx="12" cy="12" r="10" fill="#FFD700" stroke="#F1C40F" />
+                    <text x="12" y="16" fontSize="12" fontWeight="bold" textAnchor="middle" fill="#111">$</text>
+                  </svg>
+                </div>
                 <span className={styles.statLabel}>COINS</span>
                 <span className={styles.statValue} style={{ 
                   color: counterColor,
@@ -69,11 +75,32 @@ export const Watch: React.FC = () => {
                 }}>{resources.coins}</span>
               </div>
               <div className={styles.statItem}>
+                <div className={styles.statIcon}>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <circle cx="12" cy="14" r="6" fill="#333" />
+                    <path d="M12 8V5" stroke="#ff5252" />
+                    <path d="M15 10L17 8" stroke="#ff5252" />
+                    <path d="M9 10L7 8" stroke="#ff5252" />
+                  </svg>
+                </div>
                 <span className={styles.statLabel}>BOMBS</span>
                 <span className={styles.statValue} style={{ 
                   color: counterColor,
                   textShadow: `0 0 5px ${counterColor}`
                 }}>{resources.bombs}</span>
+              </div>
+              <div className={styles.statItem}>
+                <div className={styles.statIcon}>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M12 20s-6-3-6-8.5V6l6-2 6 2v5.5c0 5.5-6 8.5-6 8.5z" fill="#3498db" stroke="#2980b9" />
+                    <path d="M12 12l-2-2 1-1 1 1 3-3 1 1-4 4z" fill="#ffffff" stroke="none" />
+                  </svg>
+                </div>
+                <span className={styles.statLabel}>SHIELDS</span>
+                <span className={styles.statValue} style={{ 
+                  color: counterColor,
+                  textShadow: `0 0 5px ${counterColor}`
+                }}>{resources.shields}</span>
               </div>
             </div>
           </div>

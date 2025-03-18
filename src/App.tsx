@@ -13,6 +13,7 @@ import FloatingControls from './components/navigation/FloatingControls';
 import LeaderboardUpdater from './components/leaderboard/LeaderboardUpdater';
 import VolumeButtonCapture from './components/mobile/VolumeButtonCapture';
 import MobileDebugHelper from './components/mobile/MobileDebugHelper';
+import ShopButton from './components/shop/ShopButton';
 import './styles/global.css';
 
 // Error boundary component to catch rendering errors
@@ -214,6 +215,7 @@ const AppContent: React.FC = () => {
           )}
           <ColorPicker />
           <FloatingControls />
+          <ShopButton />
           {currentPage === 'watch' && <Watch />}
           {currentPage === 'game' && <Game />}
         </div>
