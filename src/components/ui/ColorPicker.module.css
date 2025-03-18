@@ -4,16 +4,26 @@
   top: 140px;
   transform: translateY(0);
   background-color: #2a2a2a;
-  border-radius: 10px;
-  padding: 15px;
+  border-radius: 50%;
+  padding: 12px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   z-index: 100;
-  width: 150px;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: all 0.3s ease;
 }
 
 .colorPicker:hover {
-  transform: translateX(-5px);
+  transform: scale(1.1);
+  background-color: #3a3a3a;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+.colorPicker:active {
+  transform: scale(0.95);
 }
 
 .header {
@@ -58,8 +68,8 @@
 
 .collapsed {
   width: auto;
-  min-width: 40px;
-  padding: 8px;
+  min-width: auto;
+  padding: 0;
   cursor: pointer;
   transition: all 0.3s ease;
 }
@@ -77,16 +87,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2px;
-}
-
-.paletteIcon {
-  transition: transform 0.2s;
-  filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.5));
-}
-
-.collapsed:hover .paletteIcon {
-  transform: scale(1.1);
+  padding: 0;
 }
 
 .currentColorDot {
@@ -101,6 +102,19 @@
 .collapsed:hover .currentColorDot {
   transform: scale(1.1);
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.7);
+}
+
+/* Expanded color picker that appears when clicked */
+.colorPicker:not(.collapsed) {
+  width: 150px;
+  height: auto;
+  border-radius: 10px;
+  padding: 15px;
+  transform: translateY(0);
+}
+
+.colorPicker:not(.collapsed):hover {
+  transform: translateX(-5px);
 }
 
 .colorGrid {
@@ -140,8 +154,14 @@
   .colorPicker {
     right: 10px;
     top: 130px;
-    padding: 10px;
+    width: 40px;
+    height: 40px;
+    padding: 8px;
+  }
+  
+  .colorPicker:not(.collapsed) {
     width: 120px;
+    padding: 10px;
   }
   
   .colorGrid {
@@ -175,8 +195,14 @@
   .colorPicker {
     right: 5px;
     top: 120px;
-    padding: 8px;
+    width: 36px;
+    height: 36px;
+    padding: 6px;
+  }
+  
+  .colorPicker:not(.collapsed) {
     width: 100px;
+    padding: 8px;
   }
   
   .colorGrid {
