@@ -1,28 +1,36 @@
 import { GameState } from '../store/types';
 
-const STORAGE_KEY = 'clicker_battleship_game_state';
+const STORAGE_KEY_PREFIX = 'clicker_battleship_game_state_';
 const LEADERBOARD_KEY = 'clicker_battleship_leaderboard';
 
 export interface LeaderboardEntry {
+  userId: string;
   playerName: string;
   score: number;
+  clicks: number;
   date: string;
   shipsSunk: number;
   bombsLaunched: number;
   hitsLanded: number;
 }
 
-export const saveGameState = (state: GameState): void => {
+export const saveGameState = (state: GameState, userId?: string): void => {
   try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    const storageKey = userId 
+      ? `${STORAGE_KEY_PREFIX}${userId}` 
+      : `${STORAGE_KEY_PREFIX}anonymous`;
+    localStorage.setItem(storageKey, JSON.stringify(state));
   } catch (error) {
     console.error('Failed to save game state:', error);
   }
 };
 
-export const loadGameState = (): GameState | null => {
+export const loadGameState = (userId?: string): GameState | null => {
   try {
-    const savedState = localStorage.getItem(STORAGE_KEY);
+    const storageKey = userId 
+      ? `${STORAGE_KEY_PREFIX}${userId}` 
+      : `${STORAGE_KEY_PREFIX}anonymous`;
+    const savedState = localStorage.getItem(storageKey);
     if (savedState) {
       return JSON.parse(savedState);
     }
@@ -32,9 +40,12 @@ export const loadGameState = (): GameState | null => {
   return null;
 };
 
-export const clearGameState = (): void => {
+export const clearGameState = (userId?: string): void => {
   try {
-    localStorage.removeItem(STORAGE_KEY);
+    const storageKey = userId 
+      ? `${STORAGE_KEY_PREFIX}${userId}` 
+      : `${STORAGE_KEY_PREFIX}anonymous`;
+    localStorage.removeItem(storageKey);
   } catch (error) {
     console.error('Failed to clear game state:', error);
   }
@@ -43,13 +54,25 @@ export const clearGameState = (): void => {
 export const saveToLeaderboard = (entry: LeaderboardEntry): void => {
   try {
     const leaderboard = getLeaderboard();
-    leaderboard.push(entry);
+    
+    // Check if user already has an entry
+    const existingEntryIndex = leaderboard.findIndex(e => e.userId === entry.userId);
+    
+    if (existingEntryIndex !== -1) {
+      // Update existing entry if new score is higher
+      if (entry.score > leaderboard[existingEntryIndex].score) {
+        leaderboard[existingEntryIndex] = entry;
+      }
+    } else {
+      // Add new entry
+      leaderboard.push(entry);
+    }
     
     // Sort by score in descending order
     leaderboard.sort((a, b) => b.score - a.score);
     
-    // Keep only top 10 entries
-    const topEntries = leaderboard.slice(0, 10);
+    // Keep only top 20 entries
+    const topEntries = leaderboard.slice(0, 20);
     
     localStorage.setItem(LEADERBOARD_KEY, JSON.stringify(topEntries));
   } catch (error) {
@@ -83,4 +106,15 @@ export const calculateScore = (state: GameState): number => {
     state.stats.bombsLaunched * 5;
   
   return Math.floor(resourceScore + upgradeScore + statsScore);
+};
+
+// Get leaderboard sorted by total clicks
+export const getClicksLeaderboard = (): LeaderboardEntry[] => {
+  try {
+    const leaderboard = getLeaderboard();
+    return [...leaderboard].sort((a, b) => b.clicks - a.clicks);
+  } catch (error) {
+    console.error('Failed to get clicks leaderboard:', error);
+    return [];
+  }
 }; 

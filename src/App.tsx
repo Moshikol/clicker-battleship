@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback, Suspense } from 'react';
 import { Provider } from 'react-redux';
-import { store } from './store/store';
+import { store, initializeStore } from './store/store';
 import { Watch } from './components/watch/Watch';
 import { Game } from './components/game/Game';
 import { useSelector, useDispatch } from 'react-redux';
@@ -8,6 +8,9 @@ import { RootState } from './store/store';
 import { autoClickTick } from './store/gameSlice';
 import ColorPicker from './components/ui/ColorPicker';
 import { MobileProvider } from './context/MobileContext';
+import { UserProvider, useUser } from './context/UserContext';
+import FloatingControls from './components/navigation/FloatingControls';
+import LeaderboardUpdater from './components/leaderboard/LeaderboardUpdater';
 import VolumeButtonCapture from './components/mobile/VolumeButtonCapture';
 import MobileDebugHelper from './components/mobile/MobileDebugHelper';
 import './styles/global.css';
@@ -122,6 +125,30 @@ const AutoClickHandler: React.FC = () => {
   return null;
 };
 
+// StoreProvider component to initialize store with user ID
+const StoreProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const { user } = useUser();
+  const [currentStore, setCurrentStore] = useState(store);
+
+  useEffect(() => {
+    if (user) {
+      // Initialize store with user ID
+      const userStore = initializeStore(user.id);
+      setCurrentStore(userStore);
+    } else {
+      // Reset to anonymous store
+      const anonymousStore = initializeStore();
+      setCurrentStore(anonymousStore);
+    }
+  }, [user]);
+
+  return (
+    <Provider store={currentStore}>
+      {children}
+    </Provider>
+  );
+};
+
 // Navigation context
 export const NavigationContext = React.createContext({
   navigateTo: (page: string) => {},
@@ -175,16 +202,22 @@ const AppContent: React.FC = () => {
   
   return (
     <NavigationContext.Provider value={{ navigateTo, currentPage }}>
-      <AutoClickHandler />
-      {domReady && (
-        <>
-          <VolumeButtonCapture />
-          <MobileDebugHelper />
-        </>
-      )}
-      <ColorPicker />
-      {currentPage === 'watch' && <Watch />}
-      {currentPage === 'game' && <Game />}
+      <div className="app-container">
+        <div className="content-area">
+          <AutoClickHandler />
+          <LeaderboardUpdater />
+          {domReady && (
+            <>
+              <VolumeButtonCapture />
+              <MobileDebugHelper />
+            </>
+          )}
+          <ColorPicker />
+          <FloatingControls />
+          {currentPage === 'watch' && <Watch />}
+          {currentPage === 'game' && <Game />}
+        </div>
+      </div>
     </NavigationContext.Provider>
   );
 };
@@ -193,13 +226,15 @@ const AppContent: React.FC = () => {
 const App: React.FC = () => {
   return (
     <AppErrorBoundary>
-      <Provider store={store}>
-        <MobileProvider>
-          <Suspense fallback={<Loading />}>
-            <AppContent />
-          </Suspense>
-        </MobileProvider>
-      </Provider>
+      <UserProvider>
+        <StoreProvider>
+          <MobileProvider>
+            <Suspense fallback={<Loading />}>
+              <AppContent />
+            </Suspense>
+          </MobileProvider>
+        </StoreProvider>
+      </UserProvider>
     </AppErrorBoundary>
   );
 };

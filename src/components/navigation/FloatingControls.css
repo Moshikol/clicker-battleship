@@ -1,0 +1,317 @@
+.floating-controls {
+  position: fixed;
+  right: 20px;
+  top: 20px;
+  background-color: #2a2a2a;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  z-index: 100;
+  transition: all 0.3s ease;
+  color: white;
+}
+
+.collapsed {
+  width: auto;
+  min-width: 85px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.expanded {
+  width: 180px;
+}
+
+.controls-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.collapsed .controls-header {
+  margin-bottom: 0;
+}
+
+.controls-icon {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: white;
+}
+
+.toggle-button {
+  background-color: #3a3a3a;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  padding: 0;
+  line-height: 1;
+  min-height: auto;
+}
+
+.toggle-button:hover {
+  background-color: #505050;
+}
+
+.controls-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.leaderboard-button,
+.login-button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #3a3a3a;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  font-size: 14px;
+  width: 100%;
+  min-height: auto;
+  text-align: left;
+}
+
+.leaderboard-button:hover,
+.login-button:hover {
+  background-color: #505050;
+}
+
+.leaderboard-button svg,
+.login-button svg {
+  flex-shrink: 0;
+}
+
+.profile-button {
+  margin-top: 5px;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Hover effects */
+.floating-controls:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+.collapsed:hover {
+  background-color: #3a3a3a;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+  .floating-controls {
+    right: 15px;
+    top: 15px;
+    padding: 10px;
+  }
+  
+  .expanded {
+    width: 160px;
+  }
+  
+  .leaderboard-button,
+  .login-button {
+    padding: 6px 10px;
+    font-size: 13px;
+  }
+  
+  .toggle-button {
+    width: 20px;
+    height: 20px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .floating-controls {
+    right: 10px;
+    top: 10px;
+    padding: 8px;
+  }
+  
+  .expanded {
+    width: 140px;
+  }
+  
+  .leaderboard-button,
+  .login-button {
+    padding: 5px 8px;
+    font-size: 12px;
+  }
+  
+  .toggle-button {
+    width: 18px;
+    height: 18px;
+    font-size: 12px;
+  }
+}
+
+.floating-icon {
+  position: fixed;
+  right: 20px;
+  background-color: #2a2a2a;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  z-index: 100;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: white;
+}
+
+.floating-icon:hover {
+  background-color: #3a3a3a;
+  transform: scale(1.1);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+.floating-icon:active {
+  transform: scale(0.95);
+}
+
+/* Leaderboard icon positioning */
+.leaderboard-icon {
+  top: 20px;
+}
+
+/* Login/User icon positioning */
+.login-icon, .user-icon {
+  top: 80px;
+}
+
+/* Mini avatar for user icon */
+.mini-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #3498db;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+/* Profile modal */
+.profile-modal {
+  background-color: rgba(25, 25, 35, 0.95);
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  width: 300px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  animation: appear 0.3s ease-out;
+}
+
+.profile-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.profile-modal-header h3 {
+  margin: 0;
+  font-size: 18px;
+  color: white;
+}
+
+.profile-modal-content {
+  padding: 15px;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 24px;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  min-height: auto;
+}
+
+.close-button:hover {
+  color: white;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+  .floating-icon {
+    width: 44px;
+    height: 44px;
+    right: 15px;
+  }
+  
+  .leaderboard-icon {
+    top: 15px;
+  }
+  
+  .login-icon, .user-icon {
+    top: 70px;
+  }
+}
+
+@media (max-width: 480px) {
+  .floating-icon {
+    width: 40px;
+    height: 40px;
+    right: 10px;
+  }
+  
+  .leaderboard-icon {
+    top: 10px;
+  }
+  
+  .login-icon, .user-icon {
+    top: 60px;
+  }
+  
+  .mini-avatar {
+    width: 28px;
+    height: 28px;
+    font-size: 16px;
+  }
+} 

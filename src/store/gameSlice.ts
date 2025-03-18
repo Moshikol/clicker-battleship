@@ -105,8 +105,10 @@ const gameSlice = createSlice({
   reducers: {
     // Phase 1: Clicker Mechanics
     click: (state) => {
-      // ONLY increment total clicks counter by 1, nothing else
-      state.stats.totalClicks = state.stats.totalClicks + 1;
+      // Increment total clicks counter by 1
+      state.stats.totalClicks += 1;
+      // Also increment resources clicks for easier access
+      state.resources.clicks += 1;
     },
     earnCoins: (state) => {
       const coinsEarned = state.upgrades.clickMultiplier;

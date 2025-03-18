@@ -5,11 +5,13 @@ import { resetGame } from '../../store/gameSlice';
 import { ShipPlacement } from '../grid/ShipPlacement';
 import { Grid } from '../grid/Grid';
 import { calculateScore, saveToLeaderboard } from '../../utils/storage';
+import { useUser } from '../../context/UserContext';
 import styles from './GameBoard.module.css';
 
 export const GameBoard: React.FC = () => {
   const dispatch = useDispatch();
-  const { grid, stats } = useSelector((state: RootState) => state.game);
+  const { grid, stats, resources } = useSelector((state: RootState) => state.game);
+  const { user } = useUser();
   
   const handlePlayAgain = () => {
     // Save to leaderboard if game is ended
@@ -18,8 +20,10 @@ export const GameBoard: React.FC = () => {
       const score = calculateScore(gameState);
       
       saveToLeaderboard({
-        playerName: grid.winner,
+        userId: user?.id || 'anonymous',
+        playerName: user?.nickname || grid.winner,
         score,
+        clicks: resources.clicks,
         date: new Date().toISOString(),
         shipsSunk: stats.shipsSunk,
         bombsLaunched: stats.bombsLaunched,

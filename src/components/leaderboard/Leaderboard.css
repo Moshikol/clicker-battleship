@@ -1,0 +1,227 @@
+.leaderboard-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 600px;
+  max-height: 80vh;
+  background-color: rgba(25, 25, 35, 0.95);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  padding: 20px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  animation: appear 0.3s ease-out;
+  overflow: hidden;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -48%) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+.leaderboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 15px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 15px;
+}
+
+.leaderboard-header h2 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+  background: linear-gradient(45deg, #f5c156, #e67e22, #e74c3c, #d35400);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient 5s ease infinite;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.close-button {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border-radius: 50%;
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.close-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
+}
+
+.sort-options {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+  justify-content: center;
+}
+
+.sort-options button {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.sort-options button:hover, .sort-options button.active {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.sort-options button.active {
+  font-weight: bold;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.leaderboard-content {
+  flex: 1;
+  overflow-y: auto;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 2px;
+}
+
+.leaderboard-content table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.leaderboard-content th, .leaderboard-content td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.leaderboard-content th {
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: sticky;
+  top: 0;
+  background-color: rgba(30, 30, 40, 0.95);
+  z-index: 1;
+}
+
+.leaderboard-content tbody tr {
+  transition: all 0.2s;
+}
+
+.leaderboard-content tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.leaderboard-content tbody tr.current-user {
+  background-color: rgba(52, 152, 219, 0.2);
+}
+
+.rank {
+  font-weight: bold;
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.9);
+  width: 50px;
+}
+
+.player-name {
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.score {
+  font-weight: 700;
+  font-size: 16px;
+  color: #f5c156;
+}
+
+.date {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.you-badge {
+  background-color: #3498db;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.no-data {
+  padding: 40px 20px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.6);
+  font-style: italic;
+}
+
+.leaderboard-footer {
+  text-align: center;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.5);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 15px;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 640px) {
+  .leaderboard-container {
+    width: 95%;
+    max-height: 90vh;
+  }
+  
+  .leaderboard-content th, .leaderboard-content td {
+    padding: 10px 8px;
+    font-size: 14px;
+  }
+  
+  .rank {
+    width: 30px;
+    font-size: 16px;
+  }
+  
+  .sort-options button {
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+} 

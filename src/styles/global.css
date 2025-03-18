@@ -68,6 +68,22 @@ h1, h2, h3, h4, h5, h6 {
   padding: 0 1rem;
 }
 
+/* App container with navigation */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #121212;
+  color: #fff;
+}
+
+.content-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+}
+
 /* Mobile fullscreen for PWA */
 @media all and (display-mode: fullscreen) {
   body {
@@ -97,6 +113,10 @@ h1, h2, h3, h4, h5, h6 {
   /* Improves touch interaction on small screens */
   .clickable {
     padding: 0.75rem;
+  }
+  
+  .content-area {
+    padding: 10px;
   }
 }
 

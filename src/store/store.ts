@@ -1,24 +1,29 @@
 import { configureStore } from '@reduxjs/toolkit';
 import gameReducer from './gameSlice';
-import { loadGameState, saveGameState, clearGameState } from '../utils/storage';
+import { loadGameState, saveGameState } from '../utils/storage';
 
-// Clear any existing saved state to start fresh
-clearGameState();
+// Create a function to initialize the store with user-specific data
+export const initializeStore = (userId?: string) => {
+  // Load saved state for the given user if available
+  const preloadedState = loadGameState(userId);
 
-// Load saved state if available (will be null now)
-const preloadedState = loadGameState();
+  const store = configureStore({
+    reducer: {
+      game: gameReducer,
+    },
+    preloadedState: preloadedState ? { game: preloadedState } : undefined,
+  });
 
-export const store = configureStore({
-  reducer: {
-    game: gameReducer,
-  },
-  preloadedState: preloadedState ? { game: preloadedState } : undefined,
-});
+  // Subscribe to store changes to save state for the specific user
+  store.subscribe(() => {
+    saveGameState(store.getState().game, userId);
+  });
 
-// Subscribe to store changes to save state
-store.subscribe(() => {
-  saveGameState(store.getState().game);
-});
+  return store;
+};
+
+// Create initial anonymous store
+export const store = initializeStore();
 
 export type AppDispatch = typeof store.dispatch;
 export type RootState = ReturnType<typeof store.getState>; 
