@@ -1,9 +1,11 @@
 .shop-container {
   background-color: #2a2a2a;
   border-radius: 10px;
-  padding: 20px;
+  padding: 15px;
   width: 90%;
-  max-width: 500px;
+  max-width: 450px;
+  max-height: 90vh;
+  overflow-y: auto;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
   color: white;
   position: relative;
@@ -25,14 +27,18 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   border-bottom: 1px solid #444;
   padding-bottom: 10px;
+  position: sticky;
+  top: 0;
+  background-color: #2a2a2a;
+  z-index: 1;
 }
 
 .shop-header h2 {
   margin: 0;
-  font-size: 24px;
+  font-size: 22px;
   color: #ffffff;
 }
 
@@ -62,8 +68,8 @@
   justify-content: space-between;
   background-color: #1a1a1a;
   border-radius: 8px;
-  padding: 15px;
-  margin-bottom: 20px;
+  padding: 10px;
+  margin-bottom: 15px;
   flex-wrap: wrap;
 }
 
@@ -71,7 +77,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 8px 15px;
+  padding: 6px 12px;
   position: relative;
 }
 
@@ -90,13 +96,13 @@
 }
 
 .resource-label {
-  font-size: 14px;
+  font-size: 12px;
   color: #aaa;
-  margin-bottom: 5px;
+  margin-bottom: 2px;
 }
 
 .resource-value {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: bold;
   color: #ffff00;
   text-shadow: 0 0 8px rgba(255, 255, 0, 0.5);
@@ -105,7 +111,7 @@
 .shop-items {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 10px;
 }
 
 .shop-item {
@@ -113,7 +119,7 @@
   align-items: center;
   background-color: #1a1a1a;
   border-radius: 8px;
-  padding: 15px;
+  padding: 12px;
   transition: transform 0.2s;
 }
 
@@ -123,15 +129,15 @@
 }
 
 .item-icon {
-  margin-right: 15px;
-  width: 50px;
-  height: 50px;
+  margin-right: 12px;
+  width: 40px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 8px;
   background-color: #222;
-  padding: 8px;
+  padding: 6px;
   transition: all 0.3s ease;
 }
 
@@ -177,26 +183,28 @@
 }
 
 .item-info h3 {
-  margin: 0 0 5px 0;
+  margin: 0 0 3px 0;
   color: white;
+  font-size: 16px;
 }
 
 .item-info p {
   margin: 0;
   color: #aaa;
-  font-size: 14px;
+  font-size: 12px;
 }
 
 .item-action {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 8px;
+  gap: 6px;
 }
 
 .item-price {
   color: #ffff00;
   font-weight: bold;
+  font-size: 14px;
 }
 
 .purchase-button {
@@ -204,11 +212,12 @@
   color: white;
   border: none;
   border-radius: 4px;
-  padding: 8px 15px;
+  padding: 6px 12px;
   cursor: pointer;
   transition: background-color 0.3s;
-  min-height: 36px;
+  min-height: 32px;
   font-weight: bold;
+  font-size: 14px;
 }
 
 .purchase-button:hover:not(:disabled) {
@@ -225,12 +234,17 @@
 @media (max-width: 480px) {
   .shop-container {
     width: 95%;
-    padding: 15px;
+    padding: 12px;
+    border-radius: 8px;
+  }
+  
+  .shop-header h2 {
+    font-size: 20px;
   }
   
   .current-resources {
-    flex-direction: column;
-    gap: 10px;
+    padding: 8px;
+    margin-bottom: 12px;
   }
   
   .resource {
@@ -238,6 +252,7 @@
     justify-content: space-between;
     width: 100%;
     padding: 5px 0;
+    align-items: center;
   }
   
   .resource-icon {
@@ -246,28 +261,14 @@
     animation: none;
   }
   
-  .resource-label {
-    margin-bottom: 0;
-  }
-  
   .shop-item {
-    flex-direction: column;
-    align-items: flex-start;
+    padding: 10px;
   }
   
   .item-icon {
-    margin-right: 0;
-    margin-bottom: 10px;
-    width: 100%;
-    height: 60px;
-    background-color: transparent;
-  }
-  
-  .item-action {
-    flex-direction: row;
-    align-items: center;
-    width: 100%;
-    justify-content: space-between;
-    margin-top: 10px;
+    width: 32px;
+    height: 32px;
+    margin-right: 10px;
+    padding: 5px;
   }
 } 

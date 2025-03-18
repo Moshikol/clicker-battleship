@@ -7,8 +7,8 @@
 }
 
 .shop-button {
-  width: 48px;
-  height: 48px;
+  width: 42px;
+  height: 42px;
   background-color: #2a2a2a;
   border-radius: 50%;
   display: flex;
@@ -19,7 +19,7 @@
   transition: all 0.3s ease;
   color: white;
   border: none;
-  min-height: 48px;
+  min-height: 42px;
   animation: shopButtonPulse 2s infinite alternate;
   position: relative;
 }
@@ -63,6 +63,8 @@
 
 .shop-button svg {
   transition: all 0.3s ease;
+  width: 20px;
+  height: 20px;
 }
 
 .shop-button:hover {
@@ -87,12 +89,12 @@
   transform: translateY(-50%);
   background-color: #2a2a2a;
   border-radius: 6px;
-  padding: 10px;
+  padding: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  min-width: 80px;
+  gap: 8px;
+  min-width: 70px;
   animation: fadeIn 0.2s ease-out;
 }
 
@@ -110,16 +112,19 @@
 .tooltip-item {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 }
 
 .tooltip-item svg {
   flex-shrink: 0;
+  width: 14px;
+  height: 14px;
 }
 
 .tooltip-item span {
   color: #fff;
   font-weight: bold;
+  font-size: 14px;
 }
 
 .modal-overlay {
@@ -153,20 +158,20 @@
   }
   
   .shop-button {
-    width: 40px;
-    height: 40px;
-    min-height: 40px;
+    width: 36px;
+    height: 36px;
+    min-height: 36px;
   }
   
   .shop-button svg {
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
   }
   
   .shop-tooltip {
-    right: 50px;
-    padding: 8px;
-    gap: 8px;
+    right: 45px;
+    padding: 6px;
+    gap: 6px;
   }
 }
 
@@ -176,6 +181,6 @@
   }
   
   .shop-tooltip {
-    right: 45px;
+    right: 40px;
   }
 } 

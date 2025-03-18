@@ -30,7 +30,7 @@ const Shop: React.FC<ShopProps> = ({ onClose }) => {
       <div className="current-resources">
         <div className="resource">
           <div className="resource-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
               <circle cx="12" cy="12" r="10" fill="#FFD700" stroke="#F1C40F" />
               <text x="12" y="16" fontSize="12" fontWeight="bold" textAnchor="middle" fill="#111">$</text>
             </svg>
@@ -40,7 +40,7 @@ const Shop: React.FC<ShopProps> = ({ onClose }) => {
         </div>
         <div className="resource">
           <div className="resource-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
               <circle cx="12" cy="14" r="6" fill="#333" />
               <path d="M12 8V5" stroke="#ff5252" />
               <path d="M15 10L17 8" stroke="#ff5252" />
@@ -52,7 +52,7 @@ const Shop: React.FC<ShopProps> = ({ onClose }) => {
         </div>
         <div className="resource">
           <div className="resource-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
               <path d="M12 20s-6-3-6-8.5V6l6-2 6 2v5.5c0 5.5-6 8.5-6 8.5z" fill="#3498db" stroke="#2980b9" />
               <path d="M12 12l-2-2 1-1 1 1 3-3 1 1-4 4z" fill="#ffffff" stroke="none" />
             </svg>
@@ -65,7 +65,7 @@ const Shop: React.FC<ShopProps> = ({ onClose }) => {
       <div className="shop-items">
         <div className="shop-item">
           <div className="item-icon bomb-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
               <circle cx="12" cy="14" r="8" fill="#333"></circle>
               <path d="M12 6V2" stroke="#ff5252"></path>
               <path d="M17 9L19.5 6.5" stroke="#ff5252"></path>
@@ -92,7 +92,7 @@ const Shop: React.FC<ShopProps> = ({ onClose }) => {
         
         <div className="shop-item">
           <div className="item-icon shield-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
               <path d="M12 22s-8-4.5-8-11.8V4.2L12 2l8 2.2v6c0 7.3-8 11.8-8 11.8z" fill="#3498db" stroke="#2980b9"></path>
               <path d="M12 22s8-4.5 8-11.8V8" stroke="#2980b9"></path>
               <path d="M12 13l-3-3 1.5-1.5L12 10l5-5 1.5 1.5L12 13z" fill="#ffffff" stroke="#ffffff"></path>
