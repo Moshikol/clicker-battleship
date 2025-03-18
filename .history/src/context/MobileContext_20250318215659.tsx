@@ -38,7 +38,7 @@ export const MobileProvider: React.FC<MobileProviderProps> = ({ children }) => {
       const checkMobile = () => {
         const userAgent = navigator.userAgent;
         const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
-        const isIOSDevice = /iPad|iPhone|iPod/.test(userAgent) && !(window as any).MSStream;
+        const isIOSDevice = /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
         const isAndroidDevice = /Android/.test(userAgent);
         
         setIsMobile(isMobileDevice);

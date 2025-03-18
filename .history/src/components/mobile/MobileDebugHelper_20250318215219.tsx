@@ -76,6 +76,9 @@ const MobileDebugHelper: React.FC = () => {
   const [nextId, setNextId] = useState(1);
   const [showDebug, setShowDebug] = useState(false);
   
+  // Only show debug on mobile devices
+  if (!isMobile) return null;
+  
   useEffect(() => {
     const handleKeyEvent = (e: KeyboardEvent) => {
       console.log('Debug detected key event:', e.type, e.key, e.keyCode, e.code);
@@ -101,7 +104,7 @@ const MobileDebugHelper: React.FC = () => {
     };
     
     // Add listeners
-    if (showDebug && isMobile) {
+    if (showDebug) {
       window.addEventListener('keydown', handleKeyEvent, { capture: true });
       window.addEventListener('keyup', handleKeyEvent, { capture: true });
       document.addEventListener('keydown', handleKeyEvent, { capture: true });
@@ -115,14 +118,11 @@ const MobileDebugHelper: React.FC = () => {
       document.removeEventListener('keydown', handleKeyEvent, { capture: true });
       document.removeEventListener('keyup', handleKeyEvent, { capture: true });
     };
-  }, [showDebug, nextId, isMobile]);
+  }, [showDebug, nextId]);
   
   const clearEvents = () => {
     setEvents([]);
   };
-  
-  // Only show debug on mobile devices
-  if (!isMobile) return null;
   
   if (!showDebug) {
     return (

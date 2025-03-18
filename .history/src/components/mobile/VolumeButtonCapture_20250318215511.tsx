@@ -16,7 +16,6 @@ const VolumeButtonCapture: React.FC = () => {
   const { isMobile, vibrate } = useMobile();
   // Use refs to avoid unnecessary re-renders
   const systemRef = useRef<any>(null);
-  const handlersRef = useRef<{ [key: string]: any }>({});
   
   useEffect(() => {
     if (!isMobile) return;
@@ -66,9 +65,6 @@ const VolumeButtonCapture: React.FC = () => {
           return true;
         }
       };
-      
-      // Store the handler in the ref so we can access it during cleanup
-      handlersRef.current.keyDown = handleKeyDown;
       
       // This function initializes all the necessary hacks to capture volume buttons
       const initMobileCaptureSystem = () => {
@@ -139,19 +135,18 @@ const VolumeButtonCapture: React.FC = () => {
     return () => {
       try {
         const system = systemRef.current;
-        const savedHandler = handlersRef.current.keyDown;
         if (!system) return;
 
         // Remove event listeners
-        window.removeEventListener('keydown', savedHandler, { capture: true });
-        window.removeEventListener('keyup', savedHandler, { capture: true });
-        document.removeEventListener('keydown', savedHandler, { capture: true });
-        document.removeEventListener('keyup', savedHandler, { capture: true });
+        window.removeEventListener('keydown', handleKeyDown, { capture: true });
+        window.removeEventListener('keyup', handleKeyDown, { capture: true });
+        document.removeEventListener('keydown', handleKeyDown, { capture: true });
+        document.removeEventListener('keyup', handleKeyDown, { capture: true });
         
         // Clean up overlay
         if (system.overlay) {
-          system.overlay.removeEventListener('keydown', savedHandler, { capture: true });
-          system.overlay.removeEventListener('keyup', savedHandler, { capture: true });
+          system.overlay.removeEventListener('keydown', handleKeyDown, { capture: true });
+          system.overlay.removeEventListener('keyup', handleKeyDown, { capture: true });
           
           if (document.body.contains(system.overlay)) {
             document.body.removeChild(system.overlay);
