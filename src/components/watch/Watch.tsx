@@ -79,14 +79,6 @@ export const Watch: React.FC = () => {
           </div>
         </div>
       </div>
-      <div className={styles.gameNav}>
-        <button 
-          className={styles.navButton} 
-          onClick={() => navigateTo('game')}
-        >
-          ENTER GAME
-        </button>
-      </div>
       
       {isMobile && (
         <div className={styles.mobileHint}>
