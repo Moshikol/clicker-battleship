@@ -1,0 +1,205 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
+}
+
+:root {
+  --primary-color: #2196f3;
+  --secondary-color: #4CAF50;
+  --accent-color: #FF9800;
+  --text-color: #333;
+  --background-color: #f0f2f5;
+}
+
+html {
+  height: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  line-height: 1.6;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  overflow-x: hidden;
+  min-height: 100%;
+  position: relative;
+  /* Disable pull-to-refresh on mobile */
+  overscroll-behavior-y: contain;
+  /* Prevent text selection on mobile */
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* Digital font for watch display */
+.digital-font {
+  font-family: 'Digital-7', monospace;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  /* Improve touch target size on mobile */
+  min-height: 44px;
+  min-width: 44px;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-bottom: 0.5rem;
+}
+
+/* Utility classes */
+.text-center {
+  text-align: center;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Mobile fullscreen for PWA */
+@media all and (display-mode: fullscreen) {
+  body {
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 0.5rem;
+  }
+  
+  button {
+    /* Increase touch target size on mobile */
+    min-height: 48px;
+    min-width: 48px;
+    padding: 0.75rem 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 14px;
+  }
+  
+  /* Improves touch interaction on small screens */
+  .clickable {
+    padding: 0.75rem;
+  }
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  text-align: center;
+  padding: 2rem;
+  background-color: var(--primary-color);
+  color: white;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+main {
+  flex: 1;
+  padding: 2rem;
+}
+
+.game-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+footer {
+  text-align: center;
+  padding: 1.5rem;
+  background-color: #333;
+  color: white;
+  margin-top: 2rem;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid #ddd;
+  overflow-x: auto; /* Enable horizontal scrolling on mobile */
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+}
+
+.tab {
+  padding: 1rem 2rem;
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #666;
+  transition: all 0.3s;
+  white-space: nowrap; /* Prevent text wrapping */
+}
+
+.tab.active {
+  color: var(--primary-color);
+  border-bottom-color: var(--primary-color);
+}
+
+.tab:hover:not(.active) {
+  color: #1976d2;
+  border-bottom-color: #bbdefb;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .game-container {
+    padding: 0 0.5rem;
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+  
+  .tabs {
+    padding-bottom: 0.5rem;
+  }
+  
+  .tab {
+    padding: 0.75rem 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  header {
+    padding: 1rem;
+  }
+  
+  h1 {
+    font-size: 1.75rem;
+  }
+  
+  main {
+    padding: 0.75rem;
+  }
+  
+  .tab {
+    padding: 0.75rem 1rem;
+  }
+} 

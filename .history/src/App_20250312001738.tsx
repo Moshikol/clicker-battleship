@@ -7,9 +7,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from './store/store';
 import { autoClickTick } from './store/gameSlice';
 import ColorPicker from './components/ui/ColorPicker';
-import { MobileProvider } from './context/MobileContext';
-import VolumeButtonCapture from './components/mobile/VolumeButtonCapture';
-import MobileDebugHelper from './components/mobile/MobileDebugHelper';
 import './styles/global.css';
 
 // Component that handles auto-clicking
@@ -48,8 +45,6 @@ const AppContent: React.FC = () => {
   return (
     <NavigationContext.Provider value={{ navigateTo, currentPage }}>
       <AutoClickHandler />
-      <VolumeButtonCapture />
-      <MobileDebugHelper />
       <ColorPicker />
       {currentPage === 'watch' && <Watch />}
       {currentPage === 'game' && <Game />}
@@ -61,9 +56,7 @@ const AppContent: React.FC = () => {
 const App: React.FC = () => {
   return (
     <Provider store={store}>
-      <MobileProvider>
-        <AppContent />
-      </MobileProvider>
+      <AppContent />
     </Provider>
   );
 };

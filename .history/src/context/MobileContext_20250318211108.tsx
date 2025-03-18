@@ -63,34 +63,6 @@ export const MobileProvider: React.FC<MobileProviderProps> = ({ children }) => {
       }
     };
 
-    // Native DOM event handler for direct hardware button events
-    const handleNativeButtonEvent = (event: Event) => {
-      // This works in some mobile browsers that don't properly map
-      // hardware buttons to JavaScript keyboard events
-      console.log('Native DOM event:', event.type, event);
-      
-      // In some environments, the event might be passed differently
-      // Here we check for a property that might indicate a volume button press
-      // @ts-ignore - TypeScript won't recognize these custom properties
-      if (event.volumeDown || event.keyName === 'KEYCODE_VOLUME_DOWN' || event.keyCode === 25) {
-        console.log('Native volume down detected!');
-        
-        // Trigger click actions
-        dispatch(click());
-        dispatch(earnCoins());
-        
-        // Vibrate if supported
-        if (hasVibrationSupport) {
-          navigator.vibrate(50);
-        }
-        
-        event.preventDefault();
-        return false;
-      }
-      
-      return true;
-    };
-
     // Try to capture all possible events that might be triggered by volume buttons
     const setupVolumeButtonListeners = () => {
       if (isMobile) {
@@ -99,11 +71,6 @@ export const MobileProvider: React.FC<MobileProviderProps> = ({ children }) => {
         window.addEventListener('keyup', handleVolumeButtonPress, true);
         document.addEventListener('keydown', handleVolumeButtonPress, true);
         document.addEventListener('keyup', handleVolumeButtonPress, true);
-        
-        // Native DOM events that might work in some browsers
-        document.addEventListener('volumedownbutton', handleNativeButtonEvent, true);
-        document.addEventListener('devicebutton', handleNativeButtonEvent, true);
-        document.addEventListener('hardwareButtonPressed', handleNativeButtonEvent, true);
         
         // Try to listen to media key events
         if ('mediaSession' in navigator) {
@@ -149,11 +116,6 @@ export const MobileProvider: React.FC<MobileProviderProps> = ({ children }) => {
         window.removeEventListener('keyup', handleVolumeButtonPress, true);
         document.removeEventListener('keydown', handleVolumeButtonPress, true);
         document.removeEventListener('keyup', handleVolumeButtonPress, true);
-        
-        // Native DOM events
-        document.removeEventListener('volumedownbutton', handleNativeButtonEvent, true);
-        document.removeEventListener('devicebutton', handleNativeButtonEvent, true);
-        document.removeEventListener('hardwareButtonPressed', handleNativeButtonEvent, true);
         
         if ('mediaSession' in navigator) {
           // @ts-ignore
