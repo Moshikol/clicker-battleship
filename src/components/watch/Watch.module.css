@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  padding: 2rem;
+  padding: 1rem;
   background-color: #f5f5f5;
   background-image: linear-gradient(45deg, #e0e0e0 25%, transparent 25%, transparent 75%, #e0e0e0 75%, #e0e0e0), 
                     linear-gradient(45deg, #e0e0e0 25%, transparent 25%, transparent 75%, #e0e0e0 75%, #e0e0e0);
@@ -13,12 +13,12 @@
 }
 
 .watchOuter {
-  width: 320px;
+  width: 280px;
   margin: 0 auto 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  transform: rotate(-5deg);
+  transform: rotate(0deg);
   transition: transform 0.3s ease;
 }
 
@@ -28,7 +28,7 @@
 
 .watchInner {
   width: 100%;
-  height: 320px;
+  height: auto;
   background-color: #333;
   border-radius: 20px;
   padding: 15px;
@@ -48,7 +48,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 15px;
+  padding: 15px 10px;
   cursor: pointer;
   box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.8);
 }
@@ -64,16 +64,16 @@
 
 .watchDisplay {
   width: 100%;
-  height: 80px;
+  height: 60px;
   background-color: #1a1a1a;
   border-radius: 5px 5px 0 0;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: 'Digital-7', monospace, 'Courier New';
-  font-size: 64px;
+  font-size: 42px;
   font-weight: normal;
-  color: #ffff00; /* Bright yellow like in the image */
+  color: #ffff00;
   text-shadow: 0 0 10px rgba(255, 255, 0, 0.8);
   box-shadow: 
     inset 0 0 5px rgba(0, 0, 0, 0.8),
@@ -92,23 +92,23 @@
   position: absolute;
   top: 5px;
   left: 10px;
-  font-size: 12px;
+  font-size: 10px;
   color: #888;
   text-transform: uppercase;
   letter-spacing: 1px;
 }
 
 .watchDisplay.active {
-  color: #ffff33; /* Slightly brighter yellow when active */
+  color: #ffff33;
   text-shadow: 0 0 15px rgba(255, 255, 0, 1);
 }
 
 .watchStats {
   width: 100%;
-  display: flex;
-  justify-content: space-between;
-  margin-top: 15px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 8px;
+  margin-top: 15px;
 }
 
 .statItem {
@@ -119,22 +119,20 @@
   border-radius: 5px;
   padding: 8px 5px;
   border: 2px solid #111;
-  width: 32%;
-  flex: 1;
 }
 
 .statLabel {
   font-family: 'Digital-7', monospace, 'Courier New';
-  font-size: 12px;
+  font-size: 10px;
   color: #888;
   text-transform: uppercase;
 }
 
 .statValue {
   font-family: 'Digital-7', monospace, 'Courier New';
-  font-size: 28px;
+  font-size: 20px;
   font-weight: normal;
-  color: #ffff00; /* Matching the counter color */
+  color: #ffff00;
   text-shadow: 0 0 8px rgba(255, 255, 0, 0.7);
 }
 
@@ -178,9 +176,9 @@
   width: 100%;
   background-color: #1a1a1a;
   color: white;
-  font-size: 22px;
+  font-size: 20px;
   font-weight: bold;
-  padding: 15px 0;
+  padding: 12px 0;
   border-radius: 0 0 5px 5px;
   box-shadow: 
     0 4px 8px rgba(0, 0, 0, 0.4),
@@ -283,36 +281,46 @@
   font-style: normal;
 }
 
-/* Media queries for responsiveness */
-@media (max-width: 480px) {
+/* Media queries for larger screens */
+@media (min-width: 480px) {
   .watchOuter {
-    width: 280px;
+    width: 320px;
+    transform: rotate(-5deg);
+  }
+  
+  .watchOuter:hover {
+    transform: rotate(0deg);
   }
   
   .watchInner {
-    height: 280px;
+    height: 320px;
+    padding: 15px;
+  }
+  
+  .watchFace {
+    padding: 20px 15px;
   }
   
   .watchDisplay {
-    font-size: 36px;
-    height: 60px;
+    height: 80px;
+    font-size: 64px;
   }
   
-  .statValue {
-    font-size: 16px;
-  }
-  
-  .watchStats {
-    flex-wrap: wrap;
-  }
-  
-  .statItem {
-    padding: 5px 3px;
-    min-width: 70px;
+  .watchDisplay::before {
+    font-size: 12px;
   }
   
   .statLabel {
-    font-size: 10px;
+    font-size: 12px;
+  }
+  
+  .statValue {
+    font-size: 28px;
+  }
+  
+  .clickButton {
+    font-size: 22px;
+    padding: 15px 0;
   }
 }
 
