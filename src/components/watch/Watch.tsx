@@ -86,12 +86,6 @@ export const Watch: React.FC = () => {
           </div>
         </div>
       </div>
-      
-      {isMobile && (
-        <div className={styles.mobileHint}>
-          <p>Tip: Use the volume down button to click!</p>
-        </div>
-      )}
     </div>
   );
 }; 
