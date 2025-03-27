@@ -610,6 +610,11 @@ const gameSlice = createSlice({
       console.log('Setting counter color to:', newColor);
       state.counterColor = newColor;
     },
+
+    // Add this action for testing purposes
+    addCoins: (state: GameState, action: PayloadAction<number>) => {
+      state.resources.coins += action.payload;
+    },
   },
 });
 
@@ -634,4 +639,12 @@ export const {
   rebuildShip,
   setCounterColor
 } = gameSlice.actions;
+
+// Add this action for testing purposes
+export const addCoins = (state: GameState, action: PayloadAction<number>) => {
+  state.resources.coins += action.payload;
+};
+
+gameSlice.caseReducers.addCoins = addCoins;
+
 export default gameSlice.reducer; 
