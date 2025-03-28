@@ -11,7 +11,6 @@ import { MobileProvider } from './context/MobileContext';
 import { UserProvider, useUser } from './context/UserContext';
 import FloatingControls from './components/navigation/FloatingControls';
 import LeaderboardUpdater from './components/leaderboard/LeaderboardUpdater';
-import VolumeButtonCapture from './components/mobile/VolumeButtonCapture';
 import ShopButton from './components/shop/ShopButton';
 import './styles/global.css';
 
@@ -203,12 +202,11 @@ const AppContent: React.FC = () => {
   return (
     <NavigationContext.Provider value={{ navigateTo, currentPage }}>
       <div className="app-container">
-        <div className="content-area">
+        <div className={`content-area ${currentPage === 'watch' ? 'watch-page' : ''}`}>
           <AutoClickHandler />
           <LeaderboardUpdater />
           {domReady && (
             <>
-              <VolumeButtonCapture />
             </>
           )}
           <ColorPicker />

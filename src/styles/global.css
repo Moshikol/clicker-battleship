@@ -84,6 +84,14 @@ h1, h2, h3, h4, h5, h6 {
   padding: 15px;
 }
 
+/* Watch page specific styles */
+.watch-page {
+  padding: 0;
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
 /* Mobile fullscreen for PWA */
 @media all and (display-mode: fullscreen) {
   body {

@@ -1,0 +1,44 @@
+{
+  "name": "mobile",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "scripts": {
+    "start": "expo start",
+    "dev": "expo start",
+    "hot-reload": "node hot-reload.js",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web"
+  },
+  "dependencies": {
+    "@expo/metro-runtime": "~4.0.1",
+    "@react-native-async-storage/async-storage": "^1.23.1",
+    "@reduxjs/toolkit": "^2.6.1",
+    "@types/react-native-web": "^0.19.0",
+    "expo": "~52.0.41",
+    "expo-av": "^15.0.2",
+    "expo-haptics": "^14.0.1",
+    "expo-sensors": "^14.0.2",
+    "expo-status-bar": "~2.0.1",
+    "expo-web-browser": "^14.0.2",
+    "react": "18.3.1",
+    "react-native": "0.76.7",
+    "react-native-get-random-values": "^1.11.0",
+    "react-native-keyevent": "^0.3.2",
+    "react-native-safe-area-context": "4.12.0",
+    "react-native-web": "0.19.13",
+    "react-redux": "^9.2.0",
+    "redux-persist": "^6.0.0",
+    "uuid": "^11.1.0",
+    "expo-device": "~7.0.2",
+    "expo-system-ui": "~4.0.8"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.25.2",
+    "@types/react": "~18.3.12",
+    "metro-minify-terser": "^0.82.1",
+    "react-refresh": "^0.16.0",
+    "typescript": "^5.3.3"
+  },
+  "private": true
+}

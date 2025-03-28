@@ -126,9 +126,6 @@ export const Clicker: React.FC = () => {
           >
             Click Me!
           </button>
-          {isMobile && (
-            <p className={styles.mobileHint}>Tip: Use volume down button to click!</p>
-          )}
         </div>
         <div className={styles.clickStats}>
           <p>Total Clicks: <span style={{ color: counterColor, fontWeight: 'bold' }}>{stats.totalClicks}</span></p>
